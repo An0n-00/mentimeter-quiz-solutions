@@ -27,4 +27,4 @@ This project is merely a proof of concept and should not be used for any malicio
 
 ## License
 
-License: mentimeter-quiz-solutions by An0n-00 is [licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](./LICENSE). 📜
+License: mentimeter-quiz-solutions by An0n-00 is [licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](./LICENSE). 📜 📜

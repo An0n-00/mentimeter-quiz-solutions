@@ -1,12 +1,20 @@
+showAlert('Please enter a Menti link.', 'error');
+
+document.getElementById('getAnswersForm').addEventListener('submit', (e) => {e.preventDefault();});
+
 document.getElementById('getAnswers').addEventListener('click', async function() {
     let mentiLink = document.getElementById('mentiLink').value;
-    let mentiSessionId = mentiLink.split('/').pop().substring(0, 10) + "?";
+    if (mentiLink === '' || !mentiLink.includes('menti.com')) {
+        showAlert('Please enter a Menti link.', 'error');
+        return;
+    }
+    let mentiSessionId = mentiLink.split('/').pop().split('?')[0];
     if (mentiSessionId) {
-        document.getElementById('solution').innerText = `Fetching answers for MentiSession: ${mentiSessionId}...`;
+        showAlert(`Fetching answers for MentiSession: ${mentiSessionId}...`, 'loading');
         let data = await getData(`https://api.allorigins.win/raw?url=https://api.mentimeter.com/audience/slide-deck/${mentiSessionId}`);
         document.getElementById('solution').innerText = '';
         if (data.series === undefined) {
-            document.getElementById('solution').innerText = 'No questions found. Please check if this is a correct Menti link. ' + `(${data.message})`;
+            showAlert('No questions found. Please check if this is a correct Menti link. ' + `(${data.message})`, "error");
         }
         data.series.questions.forEach(question => {
             if (question.type === 'quiz_open') {
@@ -15,13 +23,26 @@ document.getElementById('getAnswers').addEventListener('click', async function()
                 let newQuestion = document.createElement('div');
                 newQuestion.innerHTML = `<h3>Question: ${questionText}</h3>`;
                 correctAnswers.forEach(answer => {
-                    newQuestion.innerHTML += `<p>Answer: ${answer.label}</p>`;
+                    newQuestion.innerHTML += `<p><b>Answer: ${answer.label}</b></p>`;
                 });
+                document.getElementById('solution').appendChild(newQuestion);
+            } else if (question.type === 'quiz') {
+                let questionText = question.question;
+                let correctAnswer = question.choices.filter(choice => choice.correct_answers === true);
+                let newQuestion = document.createElement('div');
+                newQuestion.innerHTML = `<h3>Question: ${questionText}</h3>`;
+                if (correctAnswer.length === 0) {
+                    newQuestion.innerHTML += `<p><b>This Question Type is not supported yet.</b></p>`;
+                } else {
+                    correctAnswer.forEach(answer => {
+                        newQuestion.innerHTML += `<p><b>Answer: ${answer.label}</b></p>`;
+                    });
+                }
                 document.getElementById('solution').appendChild(newQuestion);
             }
         });
     } else {
-        alert('Please enter a valid menti.com link.');
+        showAlert('Please enter a valid menti.com link.', 'error');
     }
 });
 
@@ -46,11 +67,29 @@ async function getData(link) {
         if (response.status === 200) {
             return response.json();
         } else {
-            alert('Failed to fetch data. Something went wrong.');
+            showAlert('Failed to fetch data. Something went wrong.', 'error');
             throw new Error('Failed to fetch data');
         }
     })
     .then(data => {
         return data;
     });
+}
+
+function showAlert(message, type) {
+    const solutionDiv = document.getElementById('solution');
+    solutionDiv.innerText = message;
+    solutionDiv.className = type;
+}
+
+function showLoading(message) {
+    const solutionDiv = document.getElementById('solution');
+    solutionDiv.innerText = message;
+    solutionDiv.className = 'loading';
+}
+
+function clearSolution() {
+    const solutionDiv = document.getElementById('solution');
+    solutionDiv.innerText = '';
+    solutionDiv.className = '';
 }

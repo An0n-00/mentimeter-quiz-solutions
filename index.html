@@ -13,17 +13,28 @@
 <body>
     <header>
         <h1>Mentimeter Quiz Solution Provider</h1>
-        <a href="https://github.com/An0n-00" target="_blank">
-            <img src="./pics/github-mark-white.svg" alt="GitHub" width="30" height="30">
+        <a href="https://github.com/An0n-00/mentimeter-quiz-solutions" target="_blank">
+            <img src="./pics/github-mark.svg" alt="GitHub" width="30" height="30">
         </a>
     </header>
     <main>
-        <input type="text" id="mentiLink" placeholder="Enter the menti.com link from your browser">
-        <button id="getAnswers">Get Answers</button>
+
+        <form action="" id="getAnswersForm">
+            <input type="text" id="mentiLink" placeholder="Enter the menti.com link from your browser. Example: https://www.menti.com/algqxx1dkhrn">
+            <button id="getAnswers" type="submit">Get Answers</button>
+        </form>
+
         <div id="solution"></div>
+
+        <div id="notice">
+            <p>Mentimeter Quiz Solution Provider currently on supports 'Type Answer' questions. There is a user script in Beta that will also support other formats. </p>
+            <a href="https://github.com/An0n-00/mentimeter-quiz-solutions">For more information visit the GitHub repository.</a>
+        </div>
     </main>
     <footer>
-        <p>Rights reserved An0n-00. Proof of concept work. For educational purposes only.</p>
+        <p>Rights reserved An0n-00</p>
+        <p>Proof of concept</p>
+        <p>For educational purposes only.</p>
     </footer>
 </body>
 </html>

@@ -2,6 +2,10 @@ showAlert('Please enter a Menti link.', 'error');
 
 document.getElementById('getAnswersForm').addEventListener('submit', (e) => {e.preventDefault();});
 
+document.getElementById('notice').addEventListener('click', (e) => {
+    document.getElementById('notice').style.display = 'none';
+});
+
 document.getElementById('getAnswers').addEventListener('click', async function() {
     let mentiLink = document.getElementById('mentiLink').value;
     if (mentiLink === '' || !mentiLink.includes('menti.com')) {

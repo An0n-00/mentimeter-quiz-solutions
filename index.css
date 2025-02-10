@@ -111,7 +111,9 @@ main form {
 }
 
 #solution div:hover {
-    background-color: #3700b3;
+    background-color: #1f1f1f;
+    border: 1px solid #3700b3;
+    cursor: pointer;
 }
 
 #solution h3 {
@@ -148,6 +150,7 @@ footer {
     width: 70%;
     text-align: center;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 #notice p {
@@ -166,3 +169,19 @@ footer {
     color: #3700b3;
     text-decoration: underline;
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #6200ea;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+

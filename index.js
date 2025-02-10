@@ -3,7 +3,7 @@ document.getElementById('getAnswers').addEventListener('click', async function()
     let mentiSessionId = mentiLink.split('/').pop().substring(0, 10) + "?";
     if (mentiSessionId) {
         document.getElementById('solution').innerText = `Fetching answers for MentiSession: ${mentiSessionId}...`;
-        let data = await getData(`https://api.mentimeter.com/audience/slide-deck/${mentiSessionId}`);
+        let data = await getData(`https://api.allorigins.win/raw?url=https://api.mentimeter.com/audience/slide-deck/${mentiSessionId}`);
         document.getElementById('solution').innerText = '';
         if (data.series === undefined) {
             document.getElementById('solution').innerText = 'No questions found. Please check if this is a correct Menti link. ' + `(${data.message})`;

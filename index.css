@@ -75,6 +75,10 @@ main form input:focus, main form button:focus {
     text-align: center;
 }
 
+#seriesValue::placeholder {
+    text-align: center;
+}
+
 main form {
     width: 100%;
     display: flex;
@@ -170,18 +174,42 @@ footer {
     text-decoration: underline;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
+@keyframes glideDownUp {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(2vh);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
 }
 
-.dropbtn {
+.dropdown {
+    position: fixed;
+    top: 20px;
+    left: 46.5%;
     background-color: #6200ea;
     color: #ffffff;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
+    padding: 15px 20px;
     border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    opacity: 0;
 }
 
+.dropdown.show {
+    animation: glideDownUp 3s ease-in-out;
+}
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block !important;
+}

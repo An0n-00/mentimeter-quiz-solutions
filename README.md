@@ -22,7 +22,7 @@ You can also use this project as a userscript. To do this, you need to install a
 
 After installing the userscript manager, you can install the userscript by adding the following link to the userscript manager:
 
-[Install userscript](https://github.com/An0n-00/mentimeter-quiz-solutions/raw/refs/heads/main/script.user.js)
+[Install userscript](https://an0n-00.github.io/mentimeter-quiz-solutions/script.user.js)
 
 After installing the userscript, you can go to any mentimeter quiz and click on the userscript icon to get the solutions of the quiz.
 
